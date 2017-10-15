@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context=".EditorActivity">
+
+    <!-- Name field -->
+    <EditText
+        android:id="@+id/edit_product_name"
+        style="@style/EditorFieldStyle"
+        android:hint="@string/hint_product_name"
+        android:inputType="textCapWords" />
+
+    <!-- Price field -->
+    <EditText
+        android:id="@+id/edit_product_price"
+        style="@style/EditorFieldStyle"
+        android:hint="@string/hint_product_price"
+        android:inputType="numberDecimal" />
+
+    <!-- Qunatity field -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_product_quantity"
+            style="@style/EditorFieldQuantityStyle"
+            android:hint="@string/quantity_default"
+            android:inputType="number"
+            android:paddingRight="@dimen/plus_minus_horizontal"
+            android:paddingEnd="@dimen/plus_minus_horizontal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:layout_marginLeft="@dimen/plus_minus_horizontal"
+            android:layout_marginStart="@dimen/plus_minus_horizontal">
+
+        <ImageView
+            android:id="@+id/iv_minus"
+            android:layout_width="@dimen/plus_minus_icon_size"
+            android:layout_height="@dimen/plus_minus_icon_size"
+            android:src="@drawable/minus_selector"
+            android:layout_marginEnd="@dimen/plus_minus_horizontal"
+            android:layout_marginRight="@dimen/plus_minus_horizontal"/>
+
+        <ImageView
+            android:id="@+id/iv_plus"
+            android:layout_width="@dimen/plus_minus_icon_size"
+            android:layout_height="@dimen/plus_minus_icon_size"
+            android:src="@drawable/plus_selector"
+            android:layout_marginStart="@dimen/plus_minus_horizontal"
+            android:layout_marginLeft="@dimen/plus_minus_horizontal"/>
+            </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
