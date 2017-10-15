@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -66,6 +67,8 @@ public class EditorActivity extends AppCompatActivity implements
     private static final int QUANTITY_MINUS = 0;
     private static final int QUANTITY_PLUS = 1;
 
+    private Button btOrder;
+
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
      * the view, and we change the mproductHasChanged boolean to true.
@@ -112,6 +115,7 @@ public class EditorActivity extends AppCompatActivity implements
         mQuantityEditText = (EditText) findViewById(R.id.edit_product_quantity);
         ivMinus = (ImageView) findViewById(R.id.iv_minus);
         ivPlus = (ImageView) findViewById(R.id.iv_plus);
+        btOrder = (Button) findViewById(R.id.bt_order);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -121,7 +125,7 @@ public class EditorActivity extends AppCompatActivity implements
         mQuantityEditText.setOnTouchListener(mTouchListener);
         ivMinus.setOnClickListener(this);
         ivPlus.setOnClickListener(this);
-
+        btOrder.setOnClickListener(this);
     }
 
 
@@ -436,6 +440,13 @@ public class EditorActivity extends AppCompatActivity implements
                 break;
             case R.id.iv_plus:
                 modifyQuantity(QUANTITY_PLUS);
+                break;
+            case R.id.bt_order:
+                String subject = getString(R.string.order_for)+ " " + mNameEditText.getText().toString();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri data = Uri.parse("mailto:?subject=" + subject);
+                intent.setData(data);
+                startActivity(intent);
                 break;
             default:
 

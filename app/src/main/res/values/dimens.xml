@@ -20,5 +20,7 @@
     <dimen name="sell_icon_size">40dp</dimen>
     <dimen name="plus_minus_icon_size">30dp</dimen>
     <dimen name="plus_minus_horizontal">20dp</dimen>
+
+    <dimen name="corner_radius">5dp</dimen>
 </resources>
 

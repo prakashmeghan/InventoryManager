@@ -76,4 +76,6 @@
     <string name="currency">$</string>
     <string name="quantity">Qty:</string>
     <string name="quantity_default">0</string>
+    <string name="order_more">Order More</string>
+    <string name="order_for">Order for</string>
 </resources>

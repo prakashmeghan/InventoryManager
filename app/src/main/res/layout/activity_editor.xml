@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/activity_margin"
-    tools:context=".EditorActivity">
+    tools:context=".EditorActivity"
+    android:gravity="center_horizontal">
 
     <!-- Name field -->
     <EditText
@@ -60,5 +61,23 @@
             android:layout_marginLeft="@dimen/plus_minus_horizontal"/>
             </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_order"
+        style="?android:textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_order_selector"
+        android:gravity="center"
+        android:text="@string/order_more"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingEnd="5dp"
+        android:paddingRight="5dp"
+        android:paddingStart="5dp"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="25dp"
+        />
 
 </LinearLayout>
