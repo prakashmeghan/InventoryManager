@@ -25,7 +25,8 @@
 
         <activity
             android:name=".EditorActivity"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="stateHidden">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -35,6 +36,17 @@
             android:name=".data.InventoryProvider"
             android:authorities="com.conceptappsworld.inventorymanager"
             android:exported="false" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+
     </application>
 
 </manifest>

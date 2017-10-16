@@ -78,4 +78,7 @@
     <string name="quantity_default">0</string>
     <string name="order_more">Order More</string>
     <string name="order_for">Order for</string>
+    <string name="validation_name">Product name is compulsory field.</string>
+    <string name="validation_price">Product price is compulsory field.</string>
+    <string name="validation_quantity">Product quantity is compulsory field.</string>
 </resources>

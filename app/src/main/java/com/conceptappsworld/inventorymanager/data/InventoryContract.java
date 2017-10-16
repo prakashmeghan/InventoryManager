@@ -85,6 +85,12 @@ public final class InventoryContract {
          */
         public final static String COLUMN_PRODUCT_QUANTITY = "quantity";
 
+        /**
+         * Image name of the product.
+         * Type: String
+         */
+        public final static String COLUMN_PRODUCT_IMAGE_NAME = "image_name";
+
 
     }
 

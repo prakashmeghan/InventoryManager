@@ -9,6 +9,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,6 +20,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.conceptappsworld.inventorymanager.data.InventoryContract.ProductEntry;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -128,6 +131,10 @@ public class MainActivity extends AppCompatActivity implements
 
     private void deleteAllProducts() {
         int rowsDeleted = getContentResolver().delete(ProductEntry.CONTENT_URI, null, null);
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        for (File file : storageDir.listFiles())
+            if (!file.isDirectory())
+                file.delete();
         Log.v("MainActivity", rowsDeleted + " rows deleted from products database");
     }
 

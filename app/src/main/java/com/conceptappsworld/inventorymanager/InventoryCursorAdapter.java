@@ -97,9 +97,9 @@ public class InventoryCursorAdapter extends CursorAdapter {
             lblCurrency.setVisibility(View.GONE);
         } else {
             lblCurrency.setVisibility(View.VISIBLE);
-            Double productPriceDbl = Double.parseDouble(productPrice);
+            Double priceDbl = Double.valueOf(productPrice.replace(",", "."));
             DecimalFormat df = new DecimalFormat("#.00");
-            productPrice = df.format(productPriceDbl);
+            productPrice = df.format(priceDbl);
         }
 
         // Update the TextViews with the attributes for the current product
