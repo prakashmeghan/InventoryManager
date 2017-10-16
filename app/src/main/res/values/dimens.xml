@@ -22,5 +22,7 @@
     <dimen name="plus_minus_horizontal">20dp</dimen>
 
     <dimen name="corner_radius">5dp</dimen>
+    <dimen name="camera_w">200dp</dimen>
+    <dimen name="camera_h">210dp</dimen>
 </resources>
 

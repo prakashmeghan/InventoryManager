@@ -8,8 +8,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -69,6 +71,12 @@ public class EditorActivity extends AppCompatActivity implements
 
     private Button btOrder;
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private ImageView ivProductImage;
+
+    private Bitmap imageBitmap;
+
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
      * the view, and we change the mproductHasChanged boolean to true.
@@ -116,6 +124,7 @@ public class EditorActivity extends AppCompatActivity implements
         ivMinus = (ImageView) findViewById(R.id.iv_minus);
         ivPlus = (ImageView) findViewById(R.id.iv_plus);
         btOrder = (Button) findViewById(R.id.bt_order);
+        ivProductImage = (ImageView) findViewById(R.id.iv_product_image);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -126,6 +135,7 @@ public class EditorActivity extends AppCompatActivity implements
         ivMinus.setOnClickListener(this);
         ivPlus.setOnClickListener(this);
         btOrder.setOnClickListener(this);
+        ivProductImage.setOnClickListener(this);
     }
 
 
@@ -448,6 +458,9 @@ public class EditorActivity extends AppCompatActivity implements
                 intent.setData(data);
                 startActivity(intent);
                 break;
+            case R.id.iv_product_image:
+                dispatchTakePictureIntent();
+                break;
             default:
 
                 break;
@@ -456,7 +469,11 @@ public class EditorActivity extends AppCompatActivity implements
 
     private void modifyQuantity(int quantityOperation) {
         String quantityString = mQuantityEditText.getText().toString().trim();
-        int quantityInt = Integer.parseInt(quantityString);
+        int quantityInt = 0;
+        if(!quantityString.equalsIgnoreCase("")){
+            quantityInt = Integer.parseInt(quantityString);
+        }
+
         int newQuantity = 0;
         switch (quantityOperation) {
             case QUANTITY_PLUS:
@@ -473,5 +490,37 @@ public class EditorActivity extends AppCompatActivity implements
 
                 break;
         }
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            imageBitmap = (Bitmap) extras.get("data");
+            ivProductImage.setImageBitmap(imageBitmap);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable("BitmapImage", imageBitmap);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        imageBitmap = savedInstanceState.getParcelable("BitmapImage");
+        if(imageBitmap != null){
+            ivProductImage.setImageBitmap(imageBitmap);
+        }
+
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
